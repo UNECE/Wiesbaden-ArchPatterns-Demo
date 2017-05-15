@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>triangle</title>
+    <script type="text/javascript">
+
+    function pushEvent() {
+      console.log("pushing an event to the server");
+    }
+
+    function load() {
+      var clickButton = document.getElementById("clickButton");
+      clickButton.addEventListener("click", pushEvent, false);
+    }
+
+    </script>
+  </head>
+  <body onload="load();">
+    <button id="clickButton">click</button>
+    <p>{{ timestamp }}</p>
+  </body>
+</html>
