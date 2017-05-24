@@ -35,3 +35,6 @@ if FLAGS["BROKER_ON"]:
     channel.basic_publish(exchange='triangles', routing_key='', body=message)
     print(" [x] Sent %r" % message)
     connection.close()
+
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0")
