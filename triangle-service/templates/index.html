@@ -6,6 +6,15 @@
 
     function pushEvent() {
       console.log("pushing an event to the server");
+      var event = {message: "yo", timestamp: Date.now()};
+      fetch("/events", {
+        method: "POST",
+        headers: {"Accept": "application/json"},
+        body: JSON.stringify(event)
+      })
+      .then(function(response) {
+        console.log("response from server", response);
+      });
     }
 
     function load() {
