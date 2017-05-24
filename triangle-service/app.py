@@ -22,7 +22,7 @@ def getEvents():
 
 @app.route("/events", methods=["POST"])
 def pushEvents():
-    payload = request.data
+    payload = request.data.decode("UTF-8")
     tempStore.append(json.loads(payload))
     return jsonify({"status":"message received"})
 
