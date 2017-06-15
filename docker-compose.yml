@@ -1,4 +1,14 @@
 version: '3'
 services:
+  broker:
+    build: ./broker/
   collect-service:
     build: ./collect-service/
+    depends_on:
+      - broker
+  analyse-service:
+    build: ./analyse-service/
+    depends_on:
+      - broker
+    environment:
+      - broker.url="this is a test"
