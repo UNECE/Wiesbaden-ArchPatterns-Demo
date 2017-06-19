@@ -4,11 +4,16 @@ services:
     build: ./broker/
   collect-service:
     build: ./collect-service/
+    image: romaintailhurat/collect-service:1.0
+    ports:
+      - "5000:5000"
     depends_on:
       - broker
+    environment:
+      - broker.url=localhost
   analyse-service:
     build: ./analyse-service/
     depends_on:
       - broker
     environment:
-      - broker.url="this is a test"
+      - broker.url=localhost

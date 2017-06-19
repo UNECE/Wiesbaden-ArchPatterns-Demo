@@ -17,3 +17,17 @@ All of them are Docker containers
 # Questions
 
 Should we stay on an abstract level or should we use more "statistical" services ?
+
+# Starting the containers
+
+To start the main system, via the docker-compose.yml:
+
+```bash
+docker-compose up
+```
+
+To rebuild images using compose:
+
+```bash
+docker-compose build
+```

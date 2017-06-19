@@ -4,6 +4,7 @@ import pika
 import sys
 import json
 from datetime import datetime
+import os
 
 FLAGS = { "BROKER_ON": False }
 
@@ -15,6 +16,13 @@ tempStore = []
 @app.route("/")
 def home():
     return render_template("index.html", timestamp=datetime.now())
+
+@app.route("/info")
+def info():
+    infos = {
+        "brokerUrl": os.environ["broker.url"]
+    }
+    return jsonify(infos)
 
 @app.route("/events", methods=["GET"])
 def getEvents():
@@ -37,4 +45,5 @@ if FLAGS["BROKER_ON"]:
     connection.close()
 
 if __name__ == "__main__":
+    print("Broker URL is:" + os.environ["broker.url"])
     app.run(debug=False, host="0.0.0.0")
