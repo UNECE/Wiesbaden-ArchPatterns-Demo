@@ -31,3 +31,19 @@ To rebuild images using compose:
 ```bash
 docker-compose build
 ```
+## Network
+
+Service are reachable on the docker compose network by their compose id.
+
+For example, the broker is declare as:
+
+```yaml
+services:
+  broker:
+```
+
+in the compose file, and so is reached via the Python API like:
+
+```python
+connection = pika.BlockingConnection(pika.ConnectionParameters(host="broker"))
+```
