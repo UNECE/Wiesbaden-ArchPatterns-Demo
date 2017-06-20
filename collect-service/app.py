@@ -6,12 +6,18 @@ import json
 from datetime import datetime
 import os
 
-FLAGS = { "BROKER_ON": False }
-
 app = Flask(__name__)
 
 # Simple stupid memory storage
 tempStore = []
+
+def sendMessageToBroker(message):
+    # Broker connection
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=str(os.environ["broker.url"])))
+    channel = connection.channel()
+    channel.exchange_declare(exchange='collect-channel', type='fanout')
+    channel.basic_publish(exchange='collect-channel', routing_key='', body=message)
+    connection.close()
 
 @app.route("/")
 def home():
@@ -32,17 +38,8 @@ def getEvents():
 def pushEvents():
     payload = request.data.decode("UTF-8")
     tempStore.append(json.loads(payload))
+    sendMessageToBroker("collect message")
     return jsonify({"status":"message received"})
-
-if FLAGS["BROKER_ON"]:
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
-    channel = connection.channel()
-
-    channel.exchange_declare(exchange='triangles', type='fanout')
-    message = "shape: Triangle!"
-    channel.basic_publish(exchange='triangles', routing_key='', body=message)
-    print(" [x] Sent %r" % message)
-    connection.close()
 
 if __name__ == "__main__":
     print("Broker URL is:" + os.environ["broker.url"])
