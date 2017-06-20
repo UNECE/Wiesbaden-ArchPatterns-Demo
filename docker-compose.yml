@@ -16,6 +16,14 @@ services:
       - broker
     environment:
       - broker.url=broker
+  process-service:
+    build: ./process-service/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - broker
+    environment:
+      - broker.url=broker
   #analyse-service:
   #  build: ./analyse-service/
   #  depends_on:

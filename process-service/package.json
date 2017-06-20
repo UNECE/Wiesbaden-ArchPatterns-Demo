@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "backpack-core": "^0.3.0",
+    "express": "^4.15.3"
+  },
+  "scripts": {
+    "build": "backpack build"
+  }
+}
