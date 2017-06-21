@@ -12,7 +12,7 @@ services:
     image: romaintailhurat/collect-service:1.0
     ports:
       - "5000:5000"
-    depends_on:
+    links:
       - broker
     environment:
       - broker.url=broker
@@ -20,7 +20,7 @@ services:
     build: ./process-service/
     ports:
       - "3000:3000"
-    depends_on:
+    links:
       - broker
     environment:
       - broker.url=broker
