@@ -10,6 +10,7 @@ RUN pip3 install -r requirements.txt
 
 COPY ./app.py /app/
 COPY ./templates/index.html /app/templates/index.html
+COPY ./static/  /app/static/
 
 ENTRYPOINT [ "python3" ]
 
