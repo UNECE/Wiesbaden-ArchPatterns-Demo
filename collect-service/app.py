@@ -37,8 +37,9 @@ def getEvents():
 @app.route("/events", methods=["POST"])
 def pushEvents():
     payload = request.data.decode("UTF-8")
-    tempStore.append(json.loads(payload))
-    sendMessageToBroker("collect message")
+    questionnaire = json.loads(payload)
+    tempStore.append(questionnaire)
+    sendMessageToBroker(json.dumps(questionnaire))
     return jsonify({"status":"message received"})
 
 if __name__ == "__main__":
