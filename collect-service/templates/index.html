@@ -12,9 +12,11 @@
     function getFormContent(id) {
       var res = {
         timestamp: Date.now(),
-        name: document.getElementById("name").value,
-        occupation: document.getElementById("occupation").value,
-        children: document.getElementById("children").value,
+        questionnaire: {
+          name: document.getElementById("name").value,
+          occupation: document.getElementById("occupation").value,
+          children: document.getElementById("children").value,
+        }
       }
       return res;
     }

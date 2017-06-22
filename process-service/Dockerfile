@@ -3,7 +3,7 @@ FROM node:latest
 WORKDIR /usr/app/
 
 COPY ./package.json ./yarn.lock /usr/app/
-COPY ./src/index.js /usr/app/src/
+COPY ./src/ /usr/app/src/
 RUN yarn install
 RUN yarn build
 
