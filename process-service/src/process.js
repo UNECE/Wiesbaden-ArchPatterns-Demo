@@ -1,6 +1,6 @@
 
 const process = (questionnaire) => {
-    return questionnaire;
+    return JSON.parse(questionnaire);
 };
 
 export default process;
