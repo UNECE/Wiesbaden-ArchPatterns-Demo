@@ -43,34 +43,34 @@
     </script>
   </head>
   <body onload="load();">
-    <form id="the-form">
-      <fieldset>
-        <legend>Name</legend>
+    <div class="container">
+      <form id="the-form">
+        <fieldset>
+          <legend>Name</legend>
+          <input
+            id="name"
+            class="input is-primary"
+            type="text" />
+        </fieldset>
+        <fieldset>
+          <legend>Occupation</legend>
+          <input
+            id="occupation"
+            class="input is-primary"
+            type="text" />
+        </fieldset>
+        <fieldset>
+          <legend>Number of children</legend>
+          <input
+            id="children"
+            class="input is-primary"
+            type="number" />
+        </fieldset>
         <input
-          id="name"
-          class="input is-primary"
-          type="text" />
-      </fieldset>
-      <fieldset>
-        <legend>Occupation</legend>
-        <input
-          id="occupation"
-          class="input is-primary"
-          type="text" />
-      </fieldset>
-      <fieldset>
-        <legend>Number of children</legend>
-        <input
-          id="children"
-          class="input is-primary"
-          type="number" />
-      </fieldset>
-      <input
-        class="button is-primary"
-        type="submit"
-        value="Send your questionnaire"/>
-    </form>
-    <button id="clickButton">click</button>
-    <p>{{ timestamp }}</p>
+          class="button is-primary"
+          type="submit"
+          value="Send your questionnaire"/>
+      </form>
+    </div>
   </body>
 </html>
