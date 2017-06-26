@@ -1,5 +1,7 @@
 version: '3'
+
 services:
+
   broker:
     build: ./broker/
     expose:
@@ -7,6 +9,7 @@ services:
       - "5671"
       - "5672"
       - "25672"
+
   collect-service:
     build: ./collect-service/
     image: romaintailhurat/collect-service:1.0
@@ -16,6 +19,7 @@ services:
       - broker
     environment:
       - broker.url=broker
+
   process-service:
     build: ./process-service/
     ports:
@@ -24,9 +28,12 @@ services:
       - broker
     environment:
       - broker.url=broker
-  #analyse-service:
-  #  build: ./analyse-service/
-  #  depends_on:
-  #    - broker
-  #  environment:
-  #    - broker.url=localhost
+
+  analyse-service:
+    build: ./analyse-service/
+    ports:
+      - "4000:4000"
+    links:
+      - broker
+    environment:
+      - broker.url=broker

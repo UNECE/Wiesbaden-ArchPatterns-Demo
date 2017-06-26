@@ -3,7 +3,7 @@ import express from "express";
 import process from "./process";
 import send from "./send";
 
-const port = 3000;
+const port = 4000;
 const listenerTimeout = 7000;
 const app = express();
 
@@ -13,7 +13,7 @@ const connectToBroker = () => {
   amqp.connect("amqp://broker:5672", (err, conn) => {
     console.log("Connecting to broker");
     conn.createChannel(function(err, ch) {
-      let ex = "collect-channel";
+      let ex = "process-channel";
       ch.assertExchange(ex, "fanout", { durable: false });
       ch.assertQueue("", { exclusive: true }, (err, q) => {
         console.log(
@@ -24,9 +24,10 @@ const connectToBroker = () => {
         ch.consume(
           q.queue,
           (msg) => {
-            console.log(" [x] Message to process: %s", msg.content.toString());
-            let modifiedQuestionnaire = process(msg.content);
-            send(conn, modifiedQuestionnaire);
+            let rawMessageJSON = JSON.parse(msg.content.toString());
+            console.log(" [x] Message to analyse: %s", rawMessageJSON.toString());
+            let finalProduct = process(rawMessageJSON.questionnaire);
+            send(conn, finalProduct);
           },
           { noAck: true }
         );
@@ -36,11 +37,11 @@ const connectToBroker = () => {
 };
 
 app.get("/", (req, res) => {
-  res.send("hello from process service");
+  res.send("hello from analyse service");
 });
 
 app.listen(port, () => {
-  console.log(`Service running on ${port}`);
+  console.log(`Analyse service running on ${port}`);
   // We need to wait for the broker to accept connection
   setTimeout(() => {
     connectToBroker();

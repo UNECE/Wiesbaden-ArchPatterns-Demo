@@ -31,6 +31,13 @@ To rebuild images using compose:
 ```bash
 docker-compose build
 ```
+
+Or in one go:
+
+```bash
+docker-compose build && docker-compose up
+```
+
 ## Network
 
 Service are reachable on the docker compose network by their compose id.
