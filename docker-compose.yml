@@ -12,7 +12,7 @@ services:
 
   collect-service:
     build: ./collect-service/
-    image: romaintailhurat/collect-service:1.0
+    #image: romaintailhurat/collect-service:1.0
     ports:
       - "5000:5000"
     links:
@@ -33,6 +33,15 @@ services:
     build: ./analyse-service/
     ports:
       - "4000:4000"
+    links:
+      - broker
+    environment:
+      - broker.url=broker
+
+  disseminate-service:
+    build: ./disseminate-service/
+    ports:
+      - "2000:2000"
     links:
       - broker
     environment:

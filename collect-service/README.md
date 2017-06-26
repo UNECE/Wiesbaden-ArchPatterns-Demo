@@ -1,6 +1,6 @@
-# Triangle service
+# Collect service
 
-A simple UI emitting triangle events on user action.
+This simple service collect information.
 
 ## Run
 

@@ -12,6 +12,6 @@ COPY ./app.py /app/
 COPY ./templates/index.html /app/templates/index.html
 COPY ./static/  /app/static/
 
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python3", "-u" ]
 
 CMD [ "app.py" ]
