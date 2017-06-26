@@ -1,8 +1,24 @@
 import amqp from "amqplib/callback_api";
+import request from "request";
 
 // PORT :5672
 
 const send = (connection, questionnaire) => {
+  // Send message to disseminate service
+  request(
+    {
+      url: "http://disseminate-service:5000/product",
+      method: "PUT",
+      json: { foo: "bar", woo: "car" }
+    },
+    (error, request, body) => {
+      if (error) {
+        console.log ("Error", error);
+      }
+      console.log("OK");
+    }
+  );
+  // Send message to broker
   connection.createChannel((err, channel) => {
     if (err) {
       console.error("Error when creating a channel", err);

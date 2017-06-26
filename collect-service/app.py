@@ -44,4 +44,4 @@ def pushEvents():
 
 if __name__ == "__main__":
     print("Broker URL is:" + os.environ["broker.url"])
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=False, host="0.0.0.0", port=2000)
