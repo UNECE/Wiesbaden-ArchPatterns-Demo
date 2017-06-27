@@ -3,13 +3,13 @@ import request from "request";
 
 // PORT :5672
 
-const send = (connection, questionnaire) => {
+const send = (connection, product) => {
   // Send message to disseminate service
   request(
     {
       url: "http://disseminate-service:5000/product",
       method: "PUT",
-      json: { foo: "bar", woo: "car" }
+      json: product
     },
     (error, request, body) => {
       if (error) {
@@ -25,10 +25,10 @@ const send = (connection, questionnaire) => {
     }
     let exchange = "analyse-channel";
     channel.assertExchange(exchange, "fanout", { durable: false });
-    channel.publish(exchange, "", new Buffer(JSON.stringify(questionnaire)));
+    channel.publish(exchange, "", new Buffer(JSON.stringify(product)));
     console.log(
       "New questionnaire send to analyse channel",
-      JSON.stringify(questionnaire)
+      JSON.stringify(product)
     );
   });
 };
