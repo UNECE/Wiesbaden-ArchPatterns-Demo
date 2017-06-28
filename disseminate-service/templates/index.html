@@ -15,7 +15,14 @@
   <body>
     <div class="container">
       <h1>Disseminate service</h1>
-      <p>{{ product }}</p>
+      <p>Respondents: {{ product.totalNumberOfRespondents }}</p>
+      <p>Total number of children: {{ product.totalNumberOfChildren }}</p>
+      <p>List of occupations:</p>
+      <ul>
+      {% for occupation in product.occupations %}
+        <li>{{ occupation }}</li>
+      {% endfor %}
+      </ul>
     </div>
   </body>
 </html>

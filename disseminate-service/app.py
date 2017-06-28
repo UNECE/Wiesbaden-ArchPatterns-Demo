@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request, jsonify
-import os
 from datetime import datetime
+import os
+import json
 
 # ----- Routes definition
 app = Flask(__name__)
 
 
-finalProduct = "default"
+finalProduct = {
+    "totalNumberOfRespondents": 0,
+    "totalNumberOfChildren": 0,
+    "occupations": []
+}
 
 @app.route("/")
 def home():
@@ -16,9 +21,10 @@ def home():
 def product():
     print("Request incoming on /product")
     data = request.data.decode("UTF-8")
+    print("data is of type: " + str(type(data)))
     global finalProduct
-    finalProduct = data
-    print("Final product is now " + finalProduct)
+    finalProduct = json.loads(data)
+    print("Final product is now " + str(finalProduct))
     return "OK"
 
 @app.route("/infos")
