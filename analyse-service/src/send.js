@@ -13,7 +13,7 @@ const send = (connection, product) => {
     },
     (error, request, body) => {
       if (error) {
-        console.log ("Error", error);
+        console.log("Error", error);
       }
       console.log("OK");
     }
