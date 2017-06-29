@@ -14,9 +14,32 @@ A Javascript service, a CSPA service we want to integrate
 
 All of them are Docker containers
 
-# Questions
+# Demo central
 
-Should we stay on an abstract level or should we use more "statistical" services ?
+Starting the first system:
+
+```bash
+docker-compose -f docker-compose-new.yml up -d
+```
+
+Stopping:
+
+```bash
+docker-compose stop
+```
+
+Then, check if all containers are **stopped** and if not act:
+
+```bash
+docker ps
+docker stop $(docker ps -a -q)
+```
+
+Starting the second system:
+
+```bash
+docker-compose -f docker-compose-new.yml up -d
+```
 
 # Starting the containers
 

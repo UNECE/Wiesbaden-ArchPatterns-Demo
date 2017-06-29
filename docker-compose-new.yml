@@ -37,10 +37,10 @@ services:
       - broker
     environment:
       - broker.url=broker
-      - disseminate.url=disseminate-service
+      - disseminate.url=new-disseminate-service
 
-  disseminate-service:
-    build: ./disseminate-service/
+  new-disseminate-service:
+    build: ./new-disseminate-service/
     ports:
       - "5000:5000"
     links:

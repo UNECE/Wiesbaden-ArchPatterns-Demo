@@ -4,10 +4,11 @@ import request from "request";
 // PORT :5672
 
 const send = (connection, product) => {
+  let url = process.env["disseminate.url"];
   // Send message to disseminate service
   request(
     {
-      url: "http://disseminate-service:5000/product",
+      url: "http://"+ url +":5000/product",
       method: "PUT",
       json: product
     },

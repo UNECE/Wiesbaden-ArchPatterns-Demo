@@ -1,0 +1,18 @@
+{
+    "_meta": {
+        "sources": [
+            {
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ],
+        "requires": {},
+        "hash": {
+            "sha256": "5fd9a5c2936443cdb163ac26928e6a9b7a492d084eaef82a690503a1d56b9250"
+        }
+    },
+    "default": {
+        "flask": "*"
+    },
+    "develop": {}
+}
