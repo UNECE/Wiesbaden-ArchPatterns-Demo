@@ -80,38 +80,46 @@
               Collect service
             </h1>
             <h2 class="subtitle">
-              CSPA on docker
+              CSPA on containers
             </h2>
           </div>
         </div>
       </section>
       <form id="the-form">
-        <fieldset>
-          <legend>Name</legend>
+        <div class="field">
+          <label class="label">Name</label>
+          <p class="control">
+            <input
+              id="name"
+              class="input is-primary"
+              type="text" />
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Occupation</label>
+          <p class="control">
+            <input
+              id="occupation"
+              class="input is-primary"
+              type="text" />
+          </p>
+        </div>
+        <div class="field">
+          <label class="label">Number of children</label>
+          <p class="control">
+            <input
+              id="children"
+              class="input is-primary"
+              type="text" />
+          </p>
+        </div>
+        <div class="field is-grouped">
           <input
-            id="name"
-            class="input is-primary"
-            type="text" />
-        </fieldset>
-        <fieldset>
-          <legend>Occupation</legend>
-          <input
-            id="occupation"
-            class="input is-primary"
-            type="text" />
-        </fieldset>
-        <fieldset>
-          <legend>Number of children</legend>
-          <input
-            id="children"
-            class="input is-primary"
-            type="number" />
-        </fieldset>
-        <input
-          class="button is-primary"
-          type="submit"
-          value="Send your questionnaire"/>
-        <a class="button is-info is-outlined" onclick="randForm()">!!!</a>
+            class="button is-primary"
+            type="submit"
+            value="Send your questionnaire"/>
+          <a class="button is-info is-outlined" onclick="randForm()">!!!</a>
+        </div>
       </form>
     </div>
   </body>

@@ -12,7 +12,31 @@
   </head>
   <body>
     <div class="container">
-      <h1>Disseminate service 2.0</h1>
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title" style="color: #7CCA62">
+              Disseminate service 2.0
+            </h1>
+            <h2 class="subtitle">
+              CSPA on containers
+            </h2>
+          </div>
+        </div>
+      </section>
+      <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+              Number of children per respondent
+            </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            {{ product.totalNumberOfChildren / product.totalNumberOfRespondents }}
+          </div>
+        </div>
+      </div>
+
       <p>Respondents: {{ product.totalNumberOfRespondents }}</p>
       <p>Total number of children: {{ product.totalNumberOfChildren }}</p>
       <p>List of occupations:</p>
