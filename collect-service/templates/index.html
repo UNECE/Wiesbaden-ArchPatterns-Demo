@@ -8,6 +8,37 @@
       href="{{ url_for('static',filename='bulma.css') }}" />
     <script type="text/javascript">
 
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function getRandName() {
+      var names = [
+        "Trygve",
+        "Franck",
+        "Jacob",
+        "Benoit",
+        "Therese",
+        "Romain",
+        "Marco"
+      ];
+      var index = getRandomInt(0, names.length -1);
+      return names[index];
+    }
+
+    function getRandOccupation() {
+      var occupations = ["Architect", "Developer", "Manager", "Painter", "Poet"];
+      var index = getRandomInt(0, occupations.length -1);
+      return occupations[index];
+    }
+
+    /* Generate random values for the questionnnaire fields */
+    function randForm() {
+      document.getElementById("name").value = getRandName();
+      document.getElementById("occupation").value = getRandOccupation();
+      document.getElementById("children").value = getRandomInt(0, 5);
+    }
+
     /* Grabbing the content of the questionnaire */
     function getFormContent(id) {
       var res = {
@@ -15,9 +46,9 @@
         questionnaire: {
           name: document.getElementById("name").value,
           occupation: document.getElementById("occupation").value,
-          children: document.getElementById("children").value,
+          children: document.getElementById("children").value
         }
-      }
+      };
       return res;
     }
 
@@ -27,10 +58,9 @@
       console.log("Pushing a questionnaire to the server");
       fetch("/events", {
         method: "POST",
-        headers: {"Accept": "application/json"},
+        headers: { Accept: "application/json" },
         body: JSON.stringify(getFormContent("the-form"))
-      })
-      .then(function(response) {
+      }).then(function(response) {
         console.log("response from server", response);
       });
     }
@@ -39,11 +69,22 @@
       var form = document.getElementById("the-form");
       form.addEventListener("submit", sendQuestionnaire, false);
     }
-
-    </script>
+</script>
   </head>
   <body onload="load();">
     <div class="container">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title" style="color: #009DD9">
+              Collect service
+            </h1>
+            <h2 class="subtitle">
+              CSPA on docker
+            </h2>
+          </div>
+        </div>
+      </section>
       <form id="the-form">
         <fieldset>
           <legend>Name</legend>
@@ -70,6 +111,7 @@
           class="button is-primary"
           type="submit"
           value="Send your questionnaire"/>
+        <a class="button is-info is-outlined" onclick="randForm()">!!!</a>
       </form>
     </div>
   </body>
