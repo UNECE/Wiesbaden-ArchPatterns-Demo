@@ -6,11 +6,41 @@
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static',filename='bulma.css') }}" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static',filename='chartist.min.css') }}" />
+    <script
+      type="text/javascript"
+      src="{{ url_for('static',filename='chartist.min.js') }}">
+    </script>
     <script type="text/javascript">
-    // TODO put some web socket magic here
+      // Charting using Chartist
+      function drawGraph() {
+        var occupations = {{ product.occupations | safe }};
+        var labels = occupations.map(o => o.occupation);
+        var nums = occupations.map(o => o.num);
+        var data = {
+          labels: labels,
+          series: nums
+        };
+
+        var sum = function(a, b) { return a + b };
+
+        new Chartist.Pie('.ct-chart', data, {
+          labelInterpolationFnc: function(value) {
+            //return Math.round(value / data.series.reduce(sum) * 100) + '%';
+            console.log(value);
+            return value;
+          },
+          width: 200,
+          height: 200,
+          labelDirection: "explode",
+        });
+      }
     </script>
   </head>
-  <body>
+  <body onload="drawGraph();">
     <div class="container">
       <section class="hero">
         <div class="hero-body">
@@ -29,12 +59,12 @@
           <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                  Number of children per respondent
+                  Number of respondents
                 </p>
             </header>
             <div class="card-content">
               <div class="content">
-                {{ product.totalNumberOfChildren / product.totalNumberOfRespondents }}
+                <p>{{ product.totalNumberOfRespondents }}</p>
               </div>
             </div>
           </div>
@@ -43,24 +73,45 @@
           <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
-                  List of occupations
+                  Occupations
                 </p>
             </header>
             <div class="card-content">
               <div class="content">
                 <ul>
                 {% for occupation in product.occupations %}
-                  <li>{{ occupation.occupation }} - {{ occupation.num }}</li>
+                  <li>{{ occupation.occupation }}
+                    <span class="tag is-primary is-medium">{{ occupation.num }}</span>
+                  </li>
                 {% endfor %}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- RAW  -->
-      <p>Respondents: {{ product.totalNumberOfRespondents }}</p>
-      <p>Total number of children: {{ product.totalNumberOfChildren }}</p>
-      </ul>
+      <div class="columns">
+        <div class="column">
+          <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                  Number of children per respondent
+                </p>
+            </header>
+            <div class="card-content">
+              {% if product.totalNumberOfChildren == 0 or product.totalNumberOfRespondents == 0%}
+              <div class="content">NA</div>
+              {% else %}
+              <div class="content">
+                {{ product.totalNumberOfChildren / product.totalNumberOfRespondents }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div id="chart" class="ct-chart"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

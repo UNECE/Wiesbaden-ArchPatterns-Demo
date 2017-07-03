@@ -16,10 +16,19 @@ All of them are Docker containers
 
 # Demo central
 
+All in one
+
+```bash
+docker-compose -f docker-compose.yml up -d
+docker-compose stop
+docker stop $(docker ps -a -q)
+docker-compose -f docker-compose-new.yml up -d
+```
+
 Starting the first system:
 
 ```bash
-docker-compose -f docker-compose-new.yml up -d
+docker-compose -f docker-compose.yml up -d
 ```
 
 Stopping:

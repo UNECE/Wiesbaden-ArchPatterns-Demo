@@ -12,7 +12,6 @@ services:
 
   collect-service:
     build: ./collect-service/
-    #image: romaintailhurat/collect-service:1.0
     ports:
       - "2000:2000"
     links:
