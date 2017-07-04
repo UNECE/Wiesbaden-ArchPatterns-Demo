@@ -4,15 +4,15 @@ The idea is to illustrate the power of containers in the context of CSPA service
 
 # Components
 
-A RabbitMQ broker, the dump pipes
+A RabbitMQ broker, providing a communication for the services.
 
-A Python UI/rest, the triangles services
+A collection service, providing the questionnnaire.
 
-A Java service, consuming triangles and producing squares
+A process service, that implements the validation logic.
 
-A Javascript service, a CSPA service we want to integrate
+An analyse service, aggregating data and pushing it to the disseminate service.
 
-All of them are Docker containers
+The disseminate service is displaying the final product. It exists in two version.
 
 # Demo central
 
